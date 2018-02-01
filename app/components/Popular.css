@@ -1,0 +1,29 @@
+.languages {
+  display: flex;
+  justify-content: center;
+}
+
+.language {
+  margin-right: 15px;
+  padding: 0;
+
+  font: inherit;
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.language:hover,
+.language:focus {
+  color: brown;
+}
+
+.languageActive {
+  color: brown;
+}
