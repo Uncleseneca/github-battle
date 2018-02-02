@@ -1,0 +1,18 @@
+.playerPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  display: block;
+  width: 150px;
+  margin-bottom: 20px;
+
+  border-radius: 50%;
+}
+
+.username {
+  margin: 0;
+  margin-bottom: 20px;
+}

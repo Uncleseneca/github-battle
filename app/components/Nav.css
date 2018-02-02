@@ -1,0 +1,25 @@
+.nav {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.link {
+  margin-right: 15px;
+  padding: 0;
+
+  font: inherit;
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.active {
+  color: brown;
+}

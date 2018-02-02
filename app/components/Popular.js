@@ -1,68 +1,63 @@
 import React from 'react';
-import { NavLink, Route } from 'react-router-dom';
-import styles from './Popular.css';
-import Dummy from './Dummy';
+import SelectLanguage from './SelectLanguage';
+import RepoGrid from './RepoGrid';
+import api from '../utils/api';
+import Loading from './Loading';
+
+const languages = [
+  {
+    name: 'All',
+    href: '/all',
+  },
+  {
+    name: 'JavaScrtipt',
+    href: '/javascrtipt',
+  },
+  {
+    name: 'Ruby',
+    href: '/ruby',
+  },
+  {
+    name: 'Java',
+    href: '/java',
+  },
+  {
+    name: 'CSS',
+    href: '/css',
+  },
+  {
+    name: 'Python',
+    href: '/pyton',
+  },
+];
 
 class Popular extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedLanguage: 'All',
-    };
+  state = {
+    repos: null,
+    selectedLanguage: 'All',
+  };
 
-    this.updateLanguage = this.updateLanguage.bind(this);
+  componentDidMount() {
+    this.updateLanguage(this.state.selectedLanguage);
   }
 
-  updateLanguage(lang) {
-    this.setState({ selectedLanguage: lang });
-  }
+  updateLanguage = (lang) => {
+    this.setState({ selectedLanguage: lang, repos: null });
+    api.fetchPopularRepos(lang).then((repos) => {
+      this.setState({ repos });
+    });
+  };
 
   render() {
-    const languages = [
-      {
-        name: 'All',
-        href: '/all',
-      },
-      {
-        name: 'JavaScrtipt',
-        href: '/javascrtipt',
-      },
-      {
-        name: 'Ruby',
-        href: '/ruby',
-      },
-      {
-        name: 'Java',
-        href: '/java',
-      },
-      {
-        name: 'CSS',
-        href: '/css',
-      },
-      {
-        name: 'Python',
-        href: '/pyton',
-      },
-    ];
     return (
-      <div className={styles.languages}>
-        {languages.map(
-          lang => (
-            <NavLink
-              key={lang.name}
-              className={styles.language}
-              onClick={() => this.updateLanguage(lang.name)}
-              to={lang.href}
-              activeClassName={styles.languageActive}
-            >
-              {lang.name}
-            </NavLink>
-          ),
-          this,
-        )}
+      <div>
+        <SelectLanguage languages={languages} updateLanguage={this.updateLanguage} />
         <div>
-          <Route path="/" component={Dummy} />
-          <Route path="/css" component={Dummy} />
+          {!this.state.repos ? (
+            <Loading text="Downloading" />
+          ) : (
+            <RepoGrid repos={this.state.repos} />
+          )}
         </div>
       </div>
     );

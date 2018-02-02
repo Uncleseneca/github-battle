@@ -1,0 +1,39 @@
+.popularList {
+  display: flex;
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.popularRank {
+  display: block;
+  margin-bottom: 10px;
+
+  font-size: 20px;
+}
+
+.popularItem {
+  list-style: none;
+  text-align: center;
+
+  border: 1px solid salmon;
+}
+
+.avatar {
+  display: block;
+  width: 150px;
+
+  border-radius: 50%;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 7px;
+}
